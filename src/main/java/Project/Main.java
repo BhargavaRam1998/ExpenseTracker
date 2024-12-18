@@ -18,9 +18,10 @@ public class Main {
         String command = args[0];
 
         switch (command) {
+            //command: mvn exec:java -Dexec.mainClass="Project.Main" -Dexec.args="add --description Lunch --amount 20 --category xyz"
             case "add":
 
-                if (args.length < 5) {
+                if (args.length < 7) {
                     System.out.println("Enter the Descriptin and Amount for the expense");
                     break;
                 }
@@ -29,12 +30,14 @@ public class Main {
 
                 int amount = Integer.parseInt(args[4]);
 
+                String category = args[6];
+
                 if (amount < 0) {
                     System.out.println("Please enter a valid amount");
                     break;
                 }
 
-                addExpense(description, amount);
+                addExpense(description, amount, category);
 
                 break;
 
@@ -43,15 +46,20 @@ public class Main {
                 if (args.length < 1){
                     System.out.println("Enter proper command");
                     break;
+                } else if (args.length == 1) {
+                    listAllExpenses();
+                } else if (args.length == 2) {
+                    String expenseCategory = args[1];
+                    listExpensesBasedonType(expenseCategory);
                 }
 
-                listAllExpenses();
                 break;
 
             case "delete":
 
                 if (args.length < 3){
                     System.out.println("Enter the ID number of task to be deleted");
+                    break;
                 }
 
                 int id = Integer.parseInt(args[2]);

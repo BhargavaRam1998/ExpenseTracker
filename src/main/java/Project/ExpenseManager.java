@@ -39,11 +39,11 @@ public class ExpenseManager {
         }
     }
 
-    public static void addExpense(String description, int amount) {
+    public static void addExpense(String description, int amount, String category) {
 
         int id = Expenses.size() + 1;
 
-        Expense expense = new Expense(id, description, amount);
+        Expense expense = new Expense(id, description, amount, category);
 
         Expenses.add(expense);
 
@@ -60,6 +60,19 @@ public class ExpenseManager {
         for (Expense expense: Expenses) {
             System.out.println(expense);
         }
+
+    }
+
+    public static void listExpensesBasedonType(String expenseCategory) {
+
+       long count =  Expenses.stream()
+                .filter(expense -> expenseCategory.equals(expense.getCategory()))
+                .peek(System.out::println)
+               .count();
+
+            if (count == 0) {
+                System.out.println("No expenses found that is matching the provided category");
+            }
 
     }
 

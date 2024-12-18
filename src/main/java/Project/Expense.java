@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.time.LocalDate;
 
-@JsonPropertyOrder({ "ID", "Date", "Description", "Amount" }) // Specify the field order
+@JsonPropertyOrder({ "ID", "Date", "Description", "Amount","Category" }) // Specify the field order
 public class Expense {
 
     @JsonProperty("ID")
@@ -22,6 +22,9 @@ public class Expense {
 
     @JsonProperty("Amount")
     private int Amount;
+
+    @JsonProperty("Category")
+    private String Category;
 
     @JsonIgnore // Exclude this field from JSON serialization/deserialization
     private LocalDate createdAt;
@@ -38,15 +41,18 @@ public class Expense {
     @JsonIgnore
     private LocalDate date;
 
-    public Expense(){
+    @JsonIgnore
+    private String category;
 
-    }
-
-    public Expense(int ID, String description, int amount) {
+    public Expense(int ID, String description, int amount, String Category) {
         this.ID = ID;
         this.Description = description;
         Date = LocalDate.now();
         this.Amount = amount;
+        this.Category = Category;
+    }
+
+    public Expense() {
     }
 
     @Override
@@ -90,5 +96,11 @@ public class Expense {
         Amount = amount;
     }
 
+    public String getCategory() {
+        return Category;
+    }
 
+    public void setCategory(String category) {
+        Category = category;
+    }
 }
