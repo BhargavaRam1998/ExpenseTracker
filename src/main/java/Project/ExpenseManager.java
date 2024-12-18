@@ -47,6 +47,16 @@ public class ExpenseManager {
 
         Expenses.add(expense);
 
+        int totalAmount = 0;
+
+        for (Expense exp: Expenses) {
+            totalAmount += exp.getAmount();
+        }
+
+        if (totalAmount > 300) {
+            System.out.println("!!!Exceeded the budget for the month!!!");
+        }
+
         try {
             objectMapper.writeValue(new File(FILE_PATH), Expenses);
             System.out.println("Added expense successfully" + " " + "("+"ID: " +id+")");
