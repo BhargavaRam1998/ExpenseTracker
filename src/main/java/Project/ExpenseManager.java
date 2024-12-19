@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -129,5 +131,27 @@ public class ExpenseManager {
         }
         System.out.println("Total expenses for " + monthEnum + ":" + " $"+ monthlyTotal);
 
+    }
+
+    public static void exportToFile(String file_name) {
+        try(PrintWriter writer = new PrintWriter(new FileWriter(file_name))) {
+
+            writer.println("ID,Date,Description,Amount,Category");
+
+            for (Expense expense: Expenses) {
+                writer.printf("%d,%s,%s,%d,%s%n",
+                        expense.getID(),
+                        expense.getDate(),
+                        expense.getDescription(),
+                        expense.getAmount(),
+                        expense.getCategory());
+
+            }
+
+            System.out.println("Expenses successfully exported to " + file_name);
+
+        } catch (IOException e) {
+            System.out.println("Error writing to CSV file: " + e.getMessage());
+        }
     }
 }

@@ -1,0 +1,7 @@
+ID,Date,Description,Amount,Category
+1,2024-12-18,Dinner,40,Food
+2,2024-12-18,Lunch,20,Food
+3,2024-12-18,Gas,10,Transportation
+4,2024-12-18,Uber,10,Transportation
+5,2024-12-18,Flight,500,Transportation
+6,2024-12-18,Restaurant,500,Food

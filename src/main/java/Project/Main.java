@@ -88,6 +88,18 @@ public class Main {
 
                 break;
 
+            case "export":
+
+                if (args.length < 2) {
+                    System.out.println("Please provide the file name to export the expenses to");
+                }
+
+                String file_name = args[1];
+
+                exportToFile(file_name);
+
+                break;
+
             default:
                 System.out.println("Enter valid operation");
                 break;
